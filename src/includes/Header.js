@@ -27,9 +27,9 @@ export default class Header extends Component {
                     <li><a href="struktur-organisasi.html">Struktur Organisasi</a></li>
                   </ul>
                 </li>
-                <li className="menu-has-children"><a href="">Berita</a>
+                <li className="menu-has-children"><a href="/berita">Berita</a>
                   <ul>
-                    <li><a href="berita.html">Semua</a></li>
+                    <li><a href="/berita">Semua</a></li>
                     <li><a href="berita-kegiatan.html">Kegiatan</a></li>
                     <li><a href="berita-workshop.html">Workshop</a></li>
                     <li><a href="berita-dokumen.html">Dokumen</a></li>

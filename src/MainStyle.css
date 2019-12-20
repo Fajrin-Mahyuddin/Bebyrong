@@ -1,3 +1,8 @@
-#gallery, #blog {
+* {
   font-family: 'Poppins', sans-serif;
+}
+
+.search-form > input {
+  border: none;
+  text-decoration: none;
 }
