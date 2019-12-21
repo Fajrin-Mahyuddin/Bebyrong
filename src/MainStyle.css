@@ -6,3 +6,8 @@
   border: none;
   text-decoration: none;
 }
+
+p.date {
+  font-size: 12px !important;
+  width: 150px !important;
+}
