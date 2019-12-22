@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
 
 export default class SideProfil extends Component {
-  constructor(props) {
-    super(props);
-  }
-  componentWillMount() {
-  }
-  render() {
-    console.log(this.props.data)  
 
+  render() {
     return (
       <div className="col-lg-4 sidebar-widgets">
         <div className="widget-wrap">

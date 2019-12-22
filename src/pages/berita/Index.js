@@ -15,9 +15,9 @@ export default class Index extends Component {
         <Header />
         <Banner />
         <WidgetMenu />
-        <Switch>
-          <Route path="/berita/semua" component={Post} />
-          {/* <Route path="/berita/kegiatan" component={BeritaKeg} /> */}
+        <Switch> */}
+          <Route path="/berita/:id" component={Post} />
+          {/* <Route path="/berita/kegiatan" component={Post} /> */}
         </Switch>
         <Footer />
       </div>

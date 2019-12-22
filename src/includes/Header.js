@@ -1,7 +1,21 @@
 import React, { Component } from 'react'
+import { withAuth } from '../context/AuthContex'
 
-export default class Header extends Component {
+class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.getCat = this.getCat.bind(this);
+  }
+
+  getCat = async (e) => {
+    // e.preventDefault();
+    await this.props.getKategori(e.target.id)
+
+  }
   render() {
+    // console.log(this.props.id_kat);
+    
     return (
       <header id="header">
 				<div className="header-top">
@@ -29,10 +43,10 @@ export default class Header extends Component {
                 </li>
                 <li className="menu-has-children"><a href="/berita">Berita</a>
                   <ul>
-                    <li><a href="/berita/semua">Semua</a></li>
-                    <li><a href="/berita/kegiatan">Kegiatan</a></li>
-                    <li><a href="/berita/workshop">Workshop</a></li>
-                    <li><a href="/berita/dokumen">Dokumen</a></li>
+                    <li><a href="/berita/semua" id={0} onClick={this.getCat}>Semua</a></li>
+                    <li><a href="/berita/kegiatan" id={1} onClick={this.getCat}>Kegiatan</a></li>
+                    <li><a href="/berita/workshop" id={2} onClick={this.getCat}>Workshop</a></li>
+                    <li><a href="/berita/dokumen" id={3} onClick={this.getCat}>Dokumen</a></li>
                   </ul>
                 </li>
                 <li><a href="tentang-aplikasi.html">Tentang Aplikasi</a></li>	          					          		          
@@ -45,3 +59,5 @@ export default class Header extends Component {
     )
   }
 }
+
+export default withAuth(Header)
