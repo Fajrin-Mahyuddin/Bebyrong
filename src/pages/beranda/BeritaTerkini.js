@@ -5,19 +5,18 @@ export default class BeritaTerkini extends Component {
 		constructor(props) {
 			super(props);
 			this.state = {
-				data_berita : []
+				data_berita : [],
+				isLoading: true
 			}
 		}
 
-
-
 	componentDidMount() {
-		console.log('ini mount');
 		
 		Axios.get(`api/list/berita`)
 		.then((respons) => 
 				this.setState({
-					data_berita: respons.data.data 
+					data_berita: respons.data.data,
+					isLoading:false
 				})
 				
 		 ).catch(err => alert(err))
@@ -25,9 +24,6 @@ export default class BeritaTerkini extends Component {
 
 
   render() {
-		console.log(this.state.data_berita);
-		console.log('ini render');
-		
 
     return (
       <section className="blog-area section-gap" id="blog">
@@ -41,20 +37,22 @@ export default class BeritaTerkini extends Component {
 						</div>
 					</div>					
 					<div className="row">
-					{this.state.data_berita.map((dataLoop, i) => {
-						if(i >= 4) { 
-						return <div className="col-lg-3 col-md-6 col-sm-6 single-blog">
-								<div className="thumb">
-									<img className="img-fluid" src={dataLoop.gambar} alt=""/>								
-								</div>
-								<p className="date">{dataLoop.waktu}</p>
-								<a href="blog-single.html"><h4>{dataLoop.judul}</h4></a>
-								{/* <p>
-									Makassar – Pemerintah Kota Makassar melalui Dinas Ketahanan Pangan menghelat Lomba Cipta Menu Pangan Lokal 2019.
-								</p>									 */}
-							</div>
-						}
-					})}
+					{(this.state.isLoading) ? 'Loading Data....':
+						this.state.data_berita.map((dataLoop, i) => {
+							if(i >= 4) { 
+							return <div className="col-lg-3 col-md-6 col-sm-6 single-blog" key={i}>
+											<div className="thumb">
+												<img className="img-fluid" src={dataLoop.gambar} alt=""/>								
+											</div>
+											<p className="date">{dataLoop.waktu}</p>
+											<a href="blog-single.html"><h4>{dataLoop.judul}</h4></a>
+										</div>
+							}
+							return null
+						})
+					}
+
+
 						{/* <div className="col-lg-3 col-md-6 col-sm-6 single-blog">
 							<div className="thumb">
 								<img className="img-fluid" src="img/b2.jpg" alt=""/>								

@@ -13,7 +13,7 @@ export default class WidgetMenu extends Component {
                   <div className="overlay overlay-bg"></div>
                     <a href="#" target="_blank">
                       <div className="thumb">
-                      <img className="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg" alt="" />
+                      <img className="content-image img-fluid d-block mx-auto" src="/img/blog/cat-widget1.jpg" alt="" />
                       </div>
                       <div className="content-details">
                         <h4 className="content-title mx-auto text-uppercase">Kegiatan</h4>
@@ -31,7 +31,7 @@ export default class WidgetMenu extends Component {
                   <div className="overlay overlay-bg"></div>
                     <a href="#" target="_blank">
                       <div className="thumb">
-                      <img className="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget2.jpg" alt="" />
+                      <img className="content-image img-fluid d-block mx-auto" src="/img/blog/cat-widget2.jpg" alt="" />
                       </div>
                       <div className="content-details">
                         <h4 className="content-title mx-auto text-uppercase">Workshop</h4>
@@ -49,7 +49,7 @@ export default class WidgetMenu extends Component {
                   <div className="overlay overlay-bg"></div>
                     <a href="#" target="_blank">
                       <div className="thumb">
-                      <img className="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget3.jpg" alt="" />
+                      <img className="content-image img-fluid d-block mx-auto" src="/img/blog/cat-widget3.jpg" alt="" />
                       </div>
                       <div className="content-details">
                         <h4 className="content-title mx-auto text-uppercase">Dokumen</h4>

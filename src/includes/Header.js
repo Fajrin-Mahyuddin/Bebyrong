@@ -8,7 +8,7 @@ export default class Header extends Component {
 					<div className="container">
 				  		<div className="row justify-content-center">
 						      <div id="logo">
-						        <a href="/"><img src="img/logo.png" alt="" title="" /></a>
+						        <a href="/"><img src="/img/logo.png" alt="" title="" /></a>
 						      </div>
 				  		</div>			  					
 					</div>
@@ -29,10 +29,10 @@ export default class Header extends Component {
                 </li>
                 <li className="menu-has-children"><a href="/berita">Berita</a>
                   <ul>
-                    <li><a href="/berita">Semua</a></li>
-                    <li><a href="berita-kegiatan.html">Kegiatan</a></li>
-                    <li><a href="berita-workshop.html">Workshop</a></li>
-                    <li><a href="berita-dokumen.html">Dokumen</a></li>
+                    <li><a href="/berita/semua">Semua</a></li>
+                    <li><a href="/berita/kegiatan">Kegiatan</a></li>
+                    <li><a href="/berita/workshop">Workshop</a></li>
+                    <li><a href="/berita/dokumen">Dokumen</a></li>
                   </ul>
                 </li>
                 <li><a href="tentang-aplikasi.html">Tentang Aplikasi</a></li>	          					          		          

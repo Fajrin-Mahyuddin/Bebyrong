@@ -1,35 +1,61 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import SideProfil from './SideProfil'
+import queryString from 'query-string'
+import Axios from 'axios'
 
 export default class Post extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			data: []
+		}
+	}
+	componentDidMount() {
+		console.log(queryString.parse(location.search));
+		let id_kat = '';
+		Axios.get(`/api/list/berita?kat=${id_kat}`)
+			.then(respon => 
+					this.setState({
+						data : respon.data.data 
+					})
+				)
+			.catch(err => alert(err))
+	}
   render() {
     return (
       <section className="post-content-area">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-8 posts-list">
-							<div className="single-post row">
-								<div className="col-lg-3  col-md-3 meta-details">
-									<div className="user-details row">
-										<p className="user-name col-lg-12 col-md-12 col-6"><a href="#">Admin</a> <span className="lnr lnr-user"></span></p>
-										<p className="date col-lg-12 col-md-12 col-6"><a href="#">18 November, 2019</a> <span className="lnr lnr-calendar-full"></span></p>
-										<p className="view col-lg-12 col-md-12 col-6"><a href="#">10 Dilihat</a> <span className="lnr lnr-eye"></span></p>
-										<p className="comments col-lg-12 col-md-12 col-6"><a href="#">05 Komentar</a> <span className="lnr lnr-bubble"></span></p>						
-									</div>
-								</div>
-								<div className="col-lg-9 col-md-9 ">
-									<div className="feature-img">
-										<img className="img-fluid" src="img/blog/feature-img1.jpg" alt="" />
-									</div>
-									<a className="posts-title" href="blog-single.html"><h3>Menghelat Lomba Cipta Menu Antar Kwt Se Kota Makassar, DKP Gencar Promosi Penganekaragaman Pangan Lokal</h3></a>
-									<p className="excert">
-										Kota Makassar – Pemerintah Kota Makassar melalui Dinas Ketahanan Pangan menghelat Lomba Cipta Menu Pangan Lokal 2019 antar Kelompok Wanita Tani (KWT) se Kota Makassar, yang dilaksanakan pada hari Sabtu, 21 September 2019 di BTN Karmila Sari, Tamalanrea, Makassar. 
-									</p>
-									<a href="blog-single.html" className="primary-btn">Lihat lebih banyak</a>
-								</div>
-							</div>
-							<div className="single-post row">
+							{this.state.data.map((data, i) => {
+
+							return	<div className="single-post row" key={i}>
+												<div className="col-lg-3  col-md-3 meta-details">
+													<div className="user-details row">
+														<p className="user-name col-lg-12 col-md-12 col-6"><a href="#">Admin</a> <span className="lnr lnr-user"></span></p>
+														<p className="date col-lg-12 col-md-12 col-6"><a href="#">{data.waktu}</a> <span className="lnr lnr-calendar-full"></span></p>
+														<p className="view col-lg-12 col-md-12 col-6"><a href="#">10 Dilihat</a> <span className="lnr lnr-eye"></span></p>
+														<p className="comments col-lg-12 col-md-12 col-6"><a href="#">05 Komentar</a> <span className="lnr lnr-bubble"></span></p>						
+													</div>
+												</div>
+												<div className="col-lg-9 col-md-9 ">
+													<div className="feature-img">
+														<img className="img-fluid" src={data.gambar} alt="" />
+													</div>
+													<a className="posts-title" href="blog-single.html"><h3>{data.judul}</h3></a>
+													<p className="excert">
+													</p>
+													<a href={`/berita/detail/${data.id}`} className="primary-btn">Lihat lebih banyak</a>
+														<hr />
+												</div>
+											</div>
+
+							})}
+						
+						
+						
+							{/* <div className="single-post row">
 								<div className="col-lg-3  col-md-3 meta-details">
 									<div className="user-details row">
 										<p className="user-name col-lg-12 col-md-12 col-6"><a href="#">Admin</a> <span className="lnr lnr-user"></span></p>
@@ -40,7 +66,7 @@ export default class Post extends Component {
 								</div>
 								<div className="col-lg-9 col-md-9 ">
 									<div className="feature-img">
-										<img className="img-fluid" src="img/blog/feature-img2.jpg" alt="" />
+										<img className="img-fluid" src="/img/blog/feature-img2.jpg" alt="" />
 									</div>
 									<a className="posts-title" href="blog-single.html"><h3>Mengenalkan Pola Makan B2Sa, Dinas Ketahanan Pangan Kota Makassar Gelar Sosialisasi Bagi Anak Sekolah</h3></a>
 									<p className="excert">
@@ -60,7 +86,7 @@ export default class Post extends Component {
 								</div>
 								<div className="col-lg-9 col-md-9">
 									<div className="feature-img">
-										<img className="img-fluid" src="img/blog/feature-img3.jpg" alt="" />
+										<img className="img-fluid" src="/img/blog/feature-img3.jpg" alt="" />
 									</div>
 									<a className="posts-title" href="blog-single.html"><h3>DKP Gelar Pengembangan Dan Pembinaan Kawasan Rumah Pangan Lestari</h3></a>
 									<p className="excert">
@@ -80,7 +106,7 @@ export default class Post extends Component {
 								</div>
 								<div className="col-lg-9 col-md-9">
 									<div className="feature-img">
-										<img className="img-fluid" src="img/blog/feature-img4.jpg" alt="" />
+										<img className="img-fluid" src="/img/blog/feature-img4.jpg" alt="" />
 									</div>
 									<a className="posts-title" href="blog-single.html"><h3>Jelang Idul Fitri, DKP Makassar Pantau Stok Ketersediaan Pangan</h3></a>
 									<p className="excert">
@@ -88,7 +114,7 @@ export default class Post extends Component {
 									</p>
 									<a href="blog-single.html" className="primary-btn">Lihat lebih banyak</a>
 								</div>
-							</div>														
+							</div>														 */}
                 <nav className="blog-pagination justify-content-center d-flex">
                     <ul className="pagination">
                         <li className="page-item">
@@ -113,7 +139,7 @@ export default class Post extends Component {
                     </ul>
                 </nav>
 						</div>
-            <SideProfil />
+            <SideProfil data={this.state.data} />
 					</div>
 				</div>	
 			</section>

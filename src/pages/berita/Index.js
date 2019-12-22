@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import {Switch, Route} from 'react-router-dom'
 import Header from '../../includes/Header'
 import Banner from './card/Banner'
 import WidgetMenu from './card/WidgetMenu'
 import Post from './card/Post'
 import Footer from '../../includes/Footer'
+import BeritaKeg from '../berita/card/BeritaKeg'
+
 
 export default class Index extends Component {
   render() {
@@ -12,7 +15,10 @@ export default class Index extends Component {
         <Header />
         <Banner />
         <WidgetMenu />
-        <Post />
+        <Switch>
+          <Route path="/berita/semua" component={Post} />
+          {/* <Route path="/berita/kegiatan" component={BeritaKeg} /> */}
+        </Switch>
         <Footer />
       </div>
     )
