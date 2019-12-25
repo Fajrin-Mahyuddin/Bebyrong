@@ -28,7 +28,7 @@ export default class SideProfil extends Component {
                 return <div className="single-post-list d-flex flex-row align-items-center" key={i}>
                         <div className="details">
                           <a href="blog-single.html"><h6>{data.judul}</h6></a>
-                          <p>2 Jam Lalu</p>
+                          <p>{data.waktu}</p>
                         </div>
                       </div>
                 }

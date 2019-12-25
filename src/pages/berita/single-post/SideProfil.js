@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 export default class SideProfil extends Component {
+
   render() {
     return (
       <div className="col-lg-4 sidebar-widgets">
@@ -12,7 +13,7 @@ export default class SideProfil extends Component {
             </form>
           </div>
           <div className="single-sidebar-widget user-info-widget">
-            <img src="img/blog/user-info.png" alt="" />
+            <img src="/img/blog/user-info.png" alt="" />
             <a href="#"><h4>Admin</h4></a>
             <p>
               Admin
@@ -22,29 +23,22 @@ export default class SideProfil extends Component {
           <div className="single-sidebar-widget popular-post-widget">
             <h4 className="popular-title">Posting Terbaru</h4>
             <div className="popular-post-list">
-              <div className="single-post-list d-flex flex-row align-items-center">
-                <div className="details">
-                  <a href="blog-single.html"><h6>DKP Gelar Pengembangan Dan Pembinaan Kawasan Rumah Pangan Lestari</h6></a>
-                  <p>2 Jam Lalu</p>
-                </div>
-              </div>
-              <div className="single-post-list d-flex flex-row align-items-center">
-                <div className="details">
-                  <a href="blog-single.html"><h6>Mengenalkan Pola Makan B2Sa, Dinas Ketahanan Pangan Kota Makassar Gelar Sosialisasi Bagi Anak Sekolah</h6></a>
-                  <p>1 Hari Lalu</p>
-                </div>
-              </div>
-              <div className="single-post-list d-flex flex-row align-items-center">
-                <div className="details">
-                  <a href="blog-single.html"><h6>Menghelat Lomba Cipta Menu Antar Kwt Se Kota Makassar, DKP Gencar Promosi Penganekaragaman Pangan Lokal</h6></a>
-                  <p>2 Hari Lalu</p>
-                </div>
-              </div>														
+              {/* {this.props.data.map((data, i) => {
+                if(i < 4) { 
+                return <div className="single-post-list d-flex flex-row align-items-center" key={i}>
+                        <div className="details">
+                          <a href="blog-single.html"><h6>{data.judul}</h6></a>
+                          <p>{data.waktu}</p>
+                        </div>
+                      </div>
+                }
+                return null
+              })} */}
             </div>
           </div>
 
           <div className="single-sidebar-widget ads-widget">
-            <a href="#"><img className="img-fluid" src="img/blog/ads-banner.jpg" alt=""/></a>
+            <a href="#"><img className="img-fluid" src="/img/blog/ads-banner.jpg" alt=""/></a>
           </div>
 
           <div className="single-sidebar-widget post-category-widget">

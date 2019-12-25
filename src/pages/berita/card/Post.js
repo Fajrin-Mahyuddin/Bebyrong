@@ -8,6 +8,7 @@ class Post extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			url: this.props.match.url,
 			data: [],
 			page: 1,
 			meta: {},
@@ -23,11 +24,10 @@ class Post extends Component {
 	}
 
 	getBerita = () => {
-		let url = this.props.match.url;
-		let arr = url.split('/');
+		let arr = this.state.url.split('/');
 		let str = arr[arr.length - 1];
 		let id_kat = this.state.kategori[str];
-		console.log(id_kat); 
+		console.log(this.props.match); 
 		
 		console.log(id_kat)
 		Axios.get(`/api/list/berita?kat=${id_kat}&page=${this.state.page}`)
@@ -53,13 +53,15 @@ class Post extends Component {
 		for(let i = 1; i<= Math.ceil(this.state.meta.total / this.state.meta.per_page); i++) {
 			pageNumber.push(i);
 		}
+		let arr = this.state.url.split('/');
+		let str = arr[arr.length - 1];
     return (
       <section className="post-content-area">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-8 posts-list">
 							{this.state.data.map((data, i) => {
-
+								const kategori = data.kategori.toLowerCase()
 							return	<div className="single-post row" key={i}>
 												<div className="col-lg-3  col-md-3 meta-details">
 													<div className="user-details row">
@@ -76,7 +78,7 @@ class Post extends Component {
 													<a className="posts-title" href="blog-single.html"><h3>{data.judul}</h3></a>
 													<p className="excert">
 													</p>
-													<a href={`/berita/detail/${data.id}`} className="primary-btn">Lihat lebih banyak</a>
+													<a href={`/berita/${kategori}/detail/${data.id}`} className="primary-btn">Lihat lebih banyak</a>
 														<hr />
 												</div>
 											</div>

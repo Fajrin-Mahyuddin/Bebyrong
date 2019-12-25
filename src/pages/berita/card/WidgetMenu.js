@@ -11,7 +11,7 @@ export default class WidgetMenu extends Component {
               <div className="single-cat-widget">
                 <div className="content relative">
                   <div className="overlay overlay-bg"></div>
-                    <a href="#" target="_blank">
+                    <a href="/berita/kegiatan" target="_blank">
                       <div className="thumb">
                       <img className="content-image img-fluid d-block mx-auto" src="/img/blog/cat-widget1.jpg" alt="" />
                       </div>
@@ -29,7 +29,7 @@ export default class WidgetMenu extends Component {
               <div className="single-cat-widget">
                 <div className="content relative">
                   <div className="overlay overlay-bg"></div>
-                    <a href="#" target="_blank">
+                    <a href="/berita/workshop" target="_blank">
                       <div className="thumb">
                       <img className="content-image img-fluid d-block mx-auto" src="/img/blog/cat-widget2.jpg" alt="" />
                       </div>
@@ -47,7 +47,7 @@ export default class WidgetMenu extends Component {
               <div className="single-cat-widget">
                 <div className="content relative">
                   <div className="overlay overlay-bg"></div>
-                    <a href="#" target="_blank">
+                    <a href="/berita/dokumen" target="_blank">
                       <div className="thumb">
                       <img className="content-image img-fluid d-block mx-auto" src="/img/blog/cat-widget3.jpg" alt="" />
                       </div>
