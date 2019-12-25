@@ -14,21 +14,24 @@ export default class Content extends Component {
     super(props);
     this.state = {
       data: {},
+      commentLists : [],
+      id: this.props.match.params.idBerita
     }
   }
  
   componentDidMount() {
     
-    let id = this.props.match.params.idBerita
-    Axios.get(`/api/berita/${id}`)
+    Axios.get(`/api/berita/${this.state.id}`)
     .then(respon => {
       this.setState({
         data: respon.data.data
       })
     }).catch(err => alert(err))
-      
   }
+
+
   render() {
+    
     return (
       <div>
       <Header />
@@ -36,7 +39,7 @@ export default class Content extends Component {
       {/* <Switch>
         <Route path="/berita/:id/detail/:idBerita" render={(props) => <SinglePost dataLoop={this.state.data} {...props} />} />
       </Switch> */}
-      <SinglePost dataLoop={this.state.data} />
+      <SinglePost dataLoop={this.state.data} id_comment={this.state.id} />
       <Footer />
       </div>
     )

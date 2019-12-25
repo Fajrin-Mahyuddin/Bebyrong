@@ -14,7 +14,8 @@ class Post extends Component {
 			meta: {},
 			preBtn: 'disable',
 			nexBtn: '',
-			kategori: {"semua": 0, "kegiatan": 1, "workshop": 2, "dokumen":3}
+			kategori: {"semua": 0, "kegiatan": 1, "workshop": 2, "dokumen":3},
+			isLoading: true
 		}
 		this.toPage = this.toPage.bind(this);
 		this.getBerita = this.getBerita.bind(this);
@@ -34,7 +35,8 @@ class Post extends Component {
 			.then(respon =>{ 
 					this.setState({
 						data : respon.data.data, 
-						meta : respon.data.meta 
+						meta : respon.data.meta,
+						isLoading: false 
 					})
 				})
 			.catch(err => alert(err))
@@ -53,15 +55,28 @@ class Post extends Component {
 		for(let i = 1; i<= Math.ceil(this.state.meta.total / this.state.meta.per_page); i++) {
 			pageNumber.push(i);
 		}
-		let arr = this.state.url.split('/');
-		let str = arr[arr.length - 1];
+
+		if(this.state.isLoading) {
+			return (
+			<section className="post-content-area">
+				<div className="container">
+					<div className="row">
+						<div className="col-lg-8 posts-list">
+							Loading Data...
+						</div>
+					</div>
+				</div>
+			</section>
+			)
+		}
+
     return (
       <section className="post-content-area">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-8 posts-list">
 							{this.state.data.map((data, i) => {
-								const kategori = data.kategori.toLowerCase()
+							const kategori = data.kategori.toLowerCase()
 							return	<div className="single-post row" key={i}>
 												<div className="col-lg-3  col-md-3 meta-details">
 													<div className="user-details row">
@@ -73,9 +88,9 @@ class Post extends Component {
 												</div>
 												<div className="col-lg-9 col-md-9 ">
 													<div className="feature-img">
-														<img className="img-fluid" src={data.gambar} alt="" />
+														<img className="img-fluid" src={data.gambar} alt={data.judul} />
 													</div>
-													<a className="posts-title" href="blog-single.html"><h3>{data.judul}</h3></a>
+													<a className="posts-title" href={`/berita/${kategori}/detail/${data.id}`}><h3>{data.judul}</h3></a>
 													<p className="excert">
 													</p>
 													<a href={`/berita/${kategori}/detail/${data.id}`} className="primary-btn">Lihat lebih banyak</a>
@@ -90,7 +105,6 @@ class Post extends Component {
 									current_page={this.state.meta.current_page} 
 									toPage={this.toPage} 
 							/>
-
 
 						</div>
             <SideProfil data={this.state.data} />
