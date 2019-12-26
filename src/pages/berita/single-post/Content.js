@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
-import {Switch, Route} from 'react-router-dom'
-import Banner from './Banner'
+import Banner from '../../Banner'
 import SinglePost from './SinglePost'
-import Navigate from './NavLink'
-import CommentList from './CommentList'
-import SideProfil from '../card/SideProfil'
 import Header from '../../../includes/Header'
 import Footer from '../../../includes/Footer'
 import Axios from 'axios'
+import {Helmet} from 'react-helmet'
 
 export default class Content extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: {},
-      commentLists : [],
       id: this.props.match.params.idBerita
     }
   }
@@ -29,16 +25,15 @@ export default class Content extends Component {
     }).catch(err => alert(err))
   }
 
-
   render() {
     
     return (
       <div>
+      <Helmet>
+        <title>{this.state.data.judul}</title>
+      </Helmet>
       <Header />
-      <Banner dataJudul={this.state.data.judul} />
-      {/* <Switch>
-        <Route path="/berita/:id/detail/:idBerita" render={(props) => <SinglePost dataLoop={this.state.data} {...props} />} />
-      </Switch> */}
+      <Banner judul={this.state.data.judul} />
       <SinglePost dataLoop={this.state.data} id_comment={this.state.id} />
       <Footer />
       </div>

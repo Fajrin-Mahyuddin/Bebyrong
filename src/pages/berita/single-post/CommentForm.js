@@ -7,7 +7,8 @@ export default class CommentForm extends Component {
     this.state = {
       nama: '',
       email: '',
-      komentar: ''
+      komentar: '',
+      alert: ''
     }
   }
 
@@ -19,35 +20,38 @@ export default class CommentForm extends Component {
 
   submitForm = (e) => {
     e.preventDefault();
-    Axios.post(`/api/berita/6/komentar`, { 
-      nama: this.state.nama,
-      komentar: this.state.komentar
-    }, {
+    let id = this.props.idBerita;
+    Axios.post(`/api/berita/${id}/komentar`, null, {
       headers: {
-        'Content-Type': 'application/json'
+        Accept: 'application/json',
+        nama: this.state.nama,
+        email: this.state.email,
+        komentar: this.state.komentar,
       }
     })
     .then(respons => {
       this.setState({
         nama: '',
-        komentar: ''
+        email: '',
+        komentar: '',
+        alert: respons.data.diagnostic.message
       })
-      console.log(respons)
     })
       .catch(err => console.log(err))
   }
 
   render() {
+    
     return (
       <div className="comment-form">
-        <h4>Tinggalkan komentar</h4>
+        <h4>{this.state.alert || 'Tinggalkan komentar'}</h4>
         <form >
           <div className="form-group form-inline">
             <div className="form-group col-lg-6 col-md-12 name">
               <input type="text" className="form-control" onChange={this.onInput} autoComplete="off" name="nama" value={this.state.nama} placeholder="Masukkan Nama" />
             </div>
             <div className="form-group col-lg-6 col-md-12 email">
-              <input type="email" onChange={this.onInput} className="form-control" autoComplete="off" name="email" placeholder="Masukkan Alamat" />
+              <input type="email" onChange={this.onInput} className="form-control" autoComplete="off" name="email" value={this.state.email} placeholder="Masukkan Alamat" />
             </div>										
           </div>
           <div className="form-group">

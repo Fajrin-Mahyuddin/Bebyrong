@@ -1,26 +1,8 @@
 import React, { Component } from 'react'
 import { withAuth } from '../../../context/AuthContex';
+import {Helmet} from 'react-helmet'
 
 class Banner extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			kategori: {"semua": 0, "kegiatan": 1, "workshop": 2, "dokumen":3},
-			str: ''
-		}
-
-		this.getUrl = this.getUrl.bind(this);
-	}
-
-	componentDidMount() {
-		this.getUrl()
-	}
-
-	getUrl = () => {
-		console.log(this.props.match);
-
-	}
-	
 	
   render() {
 		let url = this.props.match.url;
@@ -28,6 +10,9 @@ class Banner extends Component {
 		let str = arr[arr.length - 1];
     return (
       <section className="banner-area relative blog-home-banner" id="home">	
+				<Helmet>
+          <title>Berita | { str}</title>
+        </Helmet>
 				<div className="overlay overlay-bg"></div>
 				<div className="container">				
 					<div className="row d-flex align-items-center justify-content-center">

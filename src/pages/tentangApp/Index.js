@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import Header from '../../includes/Header'
-import Banner from '../../includes/Banner'
-import HomeAbout from './HomeAbout'
-import Galery from './Galery'
-import BeritaTerkini from './BeritaTerkini'
+import Banner from '../Banner'
+import Video from './cards/Video'
+import Services from './cards/Services'
 import Footer from '../../includes/Footer'
 import {Helmet} from 'react-helmet'
 
 export default class Index extends Component {
+  state = {
+    title: "Tentang Aplikasi"
+  }
   render() {
     return (
       <div>
         <Helmet>
-          <title>Dinas Ketahanan Pangan | Kota Makassar</title>
+          <title>{this.state.title}</title>
         </Helmet>
         <Header />
-        <Banner />
-        <HomeAbout />
-        <Galery />
-        <BeritaTerkini />
+        <Banner judul={this.state.title} />
+        <Video />
+        <Services />
         <Footer />
       </div>
     )

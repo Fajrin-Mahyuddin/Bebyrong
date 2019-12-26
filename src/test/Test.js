@@ -12,7 +12,7 @@ export default class Test extends Component {
     this.paginate = this.paginate.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     Axios.get(`https://jsonplaceholder.typicode.com/posts`)
     .then(res =>  
         this.setState({

@@ -4,6 +4,7 @@ import Axios from 'axios'
 import Pagination from './Pagination'
 import { withAuth } from '../../../context/AuthContex';
 
+
 class Post extends Component {
 	constructor(props){
 		super(props);
@@ -28,9 +29,7 @@ class Post extends Component {
 		let arr = this.state.url.split('/');
 		let str = arr[arr.length - 1];
 		let id_kat = this.state.kategori[str];
-		console.log(this.props.match); 
-		
-		console.log(id_kat)
+
 		Axios.get(`/api/list/berita?kat=${id_kat}&page=${this.state.page}`)
 			.then(respon =>{ 
 					this.setState({
@@ -72,6 +71,7 @@ class Post extends Component {
 
     return (
       <section className="post-content-area">
+			
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-8 posts-list">

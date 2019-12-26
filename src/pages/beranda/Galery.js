@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 
 export default class Galery extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			data: []
+		}
+	}
+
+
   render() {
     return (
       <section className="gallery-area section-gap" id="gallery">

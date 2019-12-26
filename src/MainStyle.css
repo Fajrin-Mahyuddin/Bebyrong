@@ -27,6 +27,31 @@ p.date {
   
 }
 
+.not-found {
+  position: relative;
+  text-align: center;
+}
+
+.not-found img {
+  padding: 50px;
+}
+
+.single-blog .date {
+  font-weight: bold !important;
+}
+
+.single-blog .thumb {
+  height: 200px;
+}
+
+.single-gallery {
+  height: 270px;
+}
+
+.img-fluid {
+  height: inherit !important;
+}
+
 @media only screen and (max-width: 600px) {
   /* For mobile phones: */
   
@@ -44,6 +69,11 @@ p.date {
   .wrapper-contex .konten {
     margin-top: -30px;
     text-align: justify;
+  }
+
+  .not-found img {
+    padding: 50% 10px;
+    width: 80%;
   }
 
 }

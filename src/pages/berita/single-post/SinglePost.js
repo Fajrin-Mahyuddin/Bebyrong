@@ -10,31 +10,24 @@ export default class SinglePost extends Component {
     super(props);
     this.state = {
       data: this.props.dataLoop,
-      dataKomen: []
+      dataKomen: [],
+      totalKoment: 0
+      
     }
   }
 
-  componentDidMount() {
-    let id = this.props.id_comment;
-    Axios.get(`/api/berita/${id}/komentar`)
-    .then(respon => {
-      this.setState({
-        dataKomen: respon.data.data
-      })
-    }).catch(err => alert(err))
-    
-  }
+  
 
   textString = () => {
     return {__html: this.props.dataLoop.isi}
   }
 
   render() {
-    const {gambar, judul, waktu, jmlShare} = this.props.dataLoop
+    const {id = null, gambar, judul, waktu, jmlShare} = this.props.dataLoop
     
     return (
       
-      <section className="post-content-area single-post-area">
+    <section className="post-content-area single-post-area">
     <div className="container">
       <div className="row">
         <div className="col-lg-8 posts-list">
@@ -50,7 +43,7 @@ export default class SinglePost extends Component {
                   <p className="user-name col-lg-12 col-md-12 col-6"><a href="#">Admin</a> <span className="lnr lnr-user"></span></p>
                   <p className="user-name col-lg-12 col-md-12 col-6"><a href="#">{moment(waktu).format('dddd, DD/mm/YYYY')}</a> <span className="lnr lnr-calendar-full"></span></p>
                   <p className="view col-lg-12 col-md-12 col-6"><a href="#">{jmlShare} Shared</a> <span className="lnr lnr-eye"></span></p>
-                  <p className="comments col-lg-12 col-md-12 col-6"><a href="#">{Object.keys(this.state.dataKomen).length} Komentar</a> <span className="lnr lnr-bubble"></span></p>
+                  <p className="comments col-lg-12 col-md-12 col-6"><a href="#">{this.state.totalKoment} Komentar</a> <span className="lnr lnr-bubble"></span></p>
                   <ul className="social-links col-lg-12 col-md-12 col-12">
                     <li><a href="#"><i className="fa fa-facebook"></i></a></li>
                     <li><a href="#"><i className="fa fa-twitter"></i></a></li>
@@ -67,7 +60,7 @@ export default class SinglePost extends Component {
           </div>
 
           <NavLink />
-          <CommentList  dataKomen={this.state.dataKomen} />
+          <CommentList getData={(e) => this.setState({totalKoment: e })} idBerita={id} />
             
         </div>
         <SideProfil />

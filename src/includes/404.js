@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 export default class NotFound extends Component {
   render() {
     return (
-      <div>
-        <h1>Not Found, 404 Error</h1>
+      <div className="not-found">
+        <img src="/img/404.png" alt="Not Found 404" />
       </div>
     )
   }

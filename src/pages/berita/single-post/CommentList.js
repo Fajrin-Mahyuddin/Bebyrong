@@ -1,14 +1,34 @@
 import React, { Component } from 'react'
 import CommentForm from './CommentForm'
+import Axios from 'axios';
 
 export default class CommentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataKomen: [],
+      dataKomen1: [],
       isClick: false,
-      lengthData: 2
+      lengthData: 2,
+      currentPage: 1,
+      idBerita: this.props.idBerita
     }
+  }
+
+  componentDidMount() {
+    // let id = this.props.idBerita;
+    this.setState({
+        idBerita:this.props.idBerita
+    })
+    console.log(this.state.idBerita)
+    Axios.get(`/api/berita/1/komentar?page=${this.state.currentPage}`)
+    .then(respon => {
+      this.setState({
+        dataKomen: respon.data
+      })      
+      this.props.getData(respon.data.meta.total)
+
+    }).catch(err => alert(err))
   }
 
   moreComment = (e) => {
@@ -22,11 +42,16 @@ export default class CommentList extends Component {
   }
   
   render() {
-    const dataKomen = this.props.dataKomen;
+    // const dataKomen = this.props.dataKomen.data || [];
+    const idBerita = this.props.idBerita;
+    // const jumtotal = this.props.dataKomen.meta || {};
+    
+    
     return (
       <div className="comments-area">
-        <a href="#" onClick={this.moreComment} ><h4>{(this.state.isClick)?'Tutup':'Lihat'} Komentar ({Object.keys(this.props.dataKomen).length})</h4></a>
-        {dataKomen.map((komentar, i) => {
+        {/* <a href="#" onClick={this.moreComment} ><h4>{(this.state.isClick)?'Tutup':'Lihat'} Komentar ({jumtotal.total})</h4></a> */}
+        <a href="#" onClick={this.moreComment} ><h4>See More</h4></a>
+        {this.state.dataKomen1.map((komentar, i) => {
           if(i <= this.state.lengthData ) {
             return (
                 <div className="comment-list" key={i}>
@@ -48,8 +73,7 @@ export default class CommentList extends Component {
             } 
             return null
         })}
-  
-        <CommentForm />	                                             				
+        <CommentForm idBerita={idBerita} />	                                             				
       </div>
     )
   }
