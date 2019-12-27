@@ -10,31 +10,26 @@ export default class Content extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
-      id: this.props.match.params.idBerita
+      judul: null,
     }
+    this.getDataChild = this.getDataChild.bind(this);
   }
  
-  componentDidMount() {
-    
-    Axios.get(`/api/berita/${this.state.id}`)
-    .then(respon => {
+  getDataChild = judul => {
       this.setState({
-        data: respon.data.data
+        judul: judul
       })
-    }).catch(err => alert(err))
   }
 
   render() {
-    
     return (
       <div>
       <Helmet>
-        <title>{this.state.data.judul}</title>
+        <title>{this.state.judul}</title>
       </Helmet>
       <Header />
-      <Banner judul={this.state.data.judul} />
-      <SinglePost dataLoop={this.state.data} id_comment={this.state.id} />
+      <Banner judul={this.state.judul} />
+      <SinglePost getData={this.getDataChild} slug={this.props.match.params.slug} />
       <Footer />
       </div>
     )

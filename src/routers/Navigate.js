@@ -16,9 +16,9 @@ export default class Navigate extends Component {
           <Route exact path="/" component={Beranda} />
           <Route path="/profil/:param" component={ProfilPage} />
           {/* <Route path="/profil/:param" component={Profil} /> */}
-          <Route exact path="/berita/:id"  component={Berita} />
-          <Route path="/berita/:id/detail/:idBerita"  component={Content} />
-          <Route path="/tentang-aplikasi"  component={TentangApp} />
+          <Route exact path="/berita/:id" component={Berita} />
+          <Route path="/berita/:id/detail/:slug"  component={Content} />
+          <Route path="/tentang-aplikasi" component={TentangApp} />
           <Route path="/kontak"  component={Kontak} />
           {/* <Route path="/berita/kegiatan"  component={BeritaKeg} /> */}
           <Route component={NotFound} />

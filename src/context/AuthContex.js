@@ -10,6 +10,7 @@ export class AuthContexProvider extends Component {
     }
 
     this.getKategori = this.getKategori.bind(this);
+    // this.makeSLug = this.makeSLug.bind(this);
   }
 
   getKategori = (event) => {
@@ -21,10 +22,18 @@ export class AuthContexProvider extends Component {
     return event
   } 
 
+  makeSLug = (str) => {
+    let slug = str.replace(/[^a-z0-9 -]/g, '')
+              .replace(/\s+/g, '-') 
+              .replace(/-+/g, '-'); 
+    return slug
+  } 
+
   render() {
     return (
       <AuthContex.Provider value={{
         getKategori: this.getKategori,
+        makeSLug: this.makeSLug,
         ...this.state
       }}>
       {this.props.children}

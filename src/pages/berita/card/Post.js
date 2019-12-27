@@ -22,10 +22,7 @@ class Post extends Component {
 		this.getBerita = this.getBerita.bind(this);
 	}
 	componentDidMount() {
-		this.getBerita()
-	}
-
-	getBerita = () => {
+		// this.getBerita()
 		let arr = this.state.url.split('/');
 		let str = arr[arr.length - 1];
 		let id_kat = this.state.kategori[str];
@@ -39,6 +36,10 @@ class Post extends Component {
 					})
 				})
 			.catch(err => alert(err))
+	}
+
+	getBerita = () => {
+		
 	}
 
 	toPage = (number) => {
@@ -68,7 +69,7 @@ class Post extends Component {
 			</section>
 			)
 		}
-
+		
     return (
       <section className="post-content-area">
 			
@@ -93,7 +94,7 @@ class Post extends Component {
 													<a className="posts-title" href={`/berita/${kategori}/detail/${data.id}`}><h3>{data.judul}</h3></a>
 													<p className="excert">
 													</p>
-													<a href={`/berita/${kategori}/detail/${data.id}`} className="primary-btn">Lihat lebih banyak</a>
+													<a href={`/berita/${kategori}/detail/${data.slug}`} className="primary-btn">Lihat lebih banyak</a>
 														<hr />
 												</div>
 											</div>

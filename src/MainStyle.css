@@ -52,6 +52,24 @@ p.date {
   height: inherit !important;
 }
 
+.comments-area .comment-navigate {
+  display: flex;
+  justify-content: space-between;
+  /* text-align: justify; */
+}
+
+.comments-area .comment-navigate a {
+  /* background: khaki; */
+  border: 2px solid #c1c1c1;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.thumb img {
+  width: 50px;
+}
+
 @media only screen and (max-width: 600px) {
   /* For mobile phones: */
   
