@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+import moment from 'moment';
 
 export default class BeritaTerkini extends Component {
 		constructor(props) {
@@ -40,12 +41,13 @@ export default class BeritaTerkini extends Component {
 					{(this.state.isLoading) ? 'Loading Data....':
 						this.state.data_berita.map((dataLoop, i) => {
 							if(i >= 4) { 
+							const kategori = dataLoop.kategori.toLowerCase()
 							return <div className="col-lg-3 col-md-6 col-sm-6 single-blog" key={i}>
 											<div className="thumb">
 												<img className="img-fluid" src={dataLoop.gambar} alt=""/>								
 											</div>
-											<p className="date">{dataLoop.waktu}</p>
-											<a href={`/berita/semua/detail/${dataLoop.id}`}><h4>{dataLoop.judul}</h4></a>
+											<p className="date">{moment(dataLoop.updated_at).format('LL')}</p>
+											<a href={`/berita/${kategori}/detail/${dataLoop.slug}`}><h4>{dataLoop.judul}</h4></a>
 										</div>
 							}
 							return null

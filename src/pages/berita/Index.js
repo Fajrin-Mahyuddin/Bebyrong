@@ -17,7 +17,7 @@ export default class Index extends Component {
         </Switch>
         <WidgetMenu />
         <Switch>
-          <Route path="/berita/:id" component={Post} />
+          <Route exact path="/berita/:id" component={Post} />
         </Switch>
         <Footer />
       </div>

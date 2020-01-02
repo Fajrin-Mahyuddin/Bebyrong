@@ -1,34 +1,55 @@
 import React, { Component } from 'react'
+import {Route, Switch, Redirect} from 'react-router-dom'
+import Axios from 'axios';
+import moment from 'moment';
 
 export default class SideProfil extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        PopularNews: [],
+        dataKategori: [],
+    }
+  }
+
+  componentDidMount() {
+    const PopularNews = Axios.get`/api/list/berita`
+    const dataKategori = Axios.get`/api/list/kategori-berita`
+    Axios.all([PopularNews, dataKategori])
+      .then(res => {
+          this.setState({
+            PopularNews: res[0].data.data,
+            dataKategori: res[1].data.data,
+          })
+      }).catch(err => alert(err))
+  }
+
+  searchBtn = () => {
+      
+  }
 
   render() {
+    
     return (
       <div className="col-lg-4 sidebar-widgets">
         <div className="widget-wrap">
           <div className="single-sidebar-widget search-widget">
-            <form className="search-form" action="#">
-                <input placeholder="Cari Posting" name="search" type="text" autoComplete="off" />
-                <button type="submit"><i className="fa fa-search"></i></button>
+            <form className="search-form">
+              <input placeholder="Cari Posting" name="search" type="text" autoComplete="off" />
+              <button type="submit"><i className="fa fa-search"></i></button>
             </form>
-          </div>
-          <div className="single-sidebar-widget user-info-widget">
-            <img src="/img/blog/user-info.png" alt="" />
-            <a href="#"><h4>Admin</h4></a>
-            <p>
-              Admin
-            </p>
           </div>
 
           <div className="single-sidebar-widget popular-post-widget">
             <h4 className="popular-title">Posting Terbaru</h4>
             <div className="popular-post-list">
-              {this.props.data.map((data, i) => {
-                if(i < 4) { 
+              {this.state.PopularNews.map((data, i) => {
+                if(i < 5) { 
+                const kategori = data.kategori.toLowerCase()
                 return <div className="single-post-list d-flex flex-row align-items-center" key={i}>
                         <div className="details">
-                          <a href="blog-single.html"><h6>{data.judul}</h6></a>
-                          <p>{data.waktu}</p>
+                          <a href={`/berita/${kategori}/detail/${data.slug}`}><h6>{data.judul}</h6></a>
+                          <p>{moment(data.updated_at).format('dddd, DD/MM/YYYY')}</p>
                         </div>
                       </div>
                 }
@@ -44,24 +65,17 @@ export default class SideProfil extends Component {
           <div className="single-sidebar-widget post-category-widget">
             <h4 className="category-title">Kategori Berita</h4>
             <ul className="cat-list">
-              <li>
-                <a href="#" className="d-flex justify-content-between">
-                  <p>Kegiatan</p>
-                  <p>37</p>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="d-flex justify-content-between">
-                  <p>Workshop</p>
-                  <p>24</p>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="d-flex justify-content-between">
-                  <p>Dokumen</p>
-                  <p>59</p>
-                </a>
-              </li>											
+              {this.state.dataKategori.map((data, i) => {
+                  const kategori = data.nama.toLowerCase()
+                  return (
+                      <li key={i}>
+                        <a href={`/berita/${kategori}`} className="d-flex justify-content-between">
+                          <p>{data.nama}</p>
+                          <p>{data.total_berita}</p>
+                        </a>
+                      </li>										
+                  )
+              })}
             </ul>
           </div>	
 

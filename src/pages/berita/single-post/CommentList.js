@@ -7,40 +7,59 @@ export default class CommentList extends Component {
     super(props);
     this.state = {
       dataKomen: [],
-      metaKoment: [],
+      metaKomen: {},
+      linksKomen: {},
       isClick: false,
-      currentPage: 1,
+      currentPage: 1
     }
-
+    this.nextPage = this.nextPage.bind(this);
   }
 
   componentDidMount() {
-    this.getDataKomen()
-    
+    this.getDataKomen(this.state.currentPage)
   }
 
-  getDataKomen = () => {
+  getDataKomen = (currentPage) => {
+    
     let id = this.props.idBerita;
-    Axios.get(`/api/berita/${id}/komentar?page=${this.state.currentPage}`)
-    .then(respon => {
-      this.setState({
-        dataKomen: respon.data,
-        metaKoment:respon.data.meta
-      })
-      
-      this.props.getData(respon.data.meta.total)
-
-    }).catch(err => alert(err))
+    if(currentPage) {
+      Axios.get(`/api/berita/${id}/komentar?page=${currentPage}`)
+      .then(respon => {
+        this.setState({
+          dataKomen: respon.data.data,
+          metaKomen:respon.data.meta,
+          currentPage:respon.data.meta.current_page,
+          linksKomen: respon.data.links
+        })
+        
+        this.props.getData(respon.data.meta.total)
+        
+      }).catch(err => alert(err))
+    }
   }
   
+  nextPage = () => {
+    let nextPage = this.state.currentPage + 1
+    this.getDataKomen(nextPage)
+  }
+
+  prevPage = () => {
+    let prevPage = this.state.currentPage - 1
+    this.getDataKomen(prevPage)
+  }
   
   render() {
-    console.log(this.state.dataKomen);
-    const dataKomen = this.state.dataKomen.data || []
-    const metaKomen = this.state.metaKoment || 0
+    const dataKomen = this.state.dataKomen
+    const metaKomen = this.state.metaKomen || 0
+    const linksKomen = this.state.linksKomen
+    
     return (
       <div className="comments-area">
-      <h4 className="comment-navigate"><a href="#" ><span class="lnr lnr-chevron-left"></span></a> Komentar ({metaKomen.total})<a href="#"><span class="lnr lnr-chevron-right"></span></a></h4>
+        <h4 className="comment-navigate">
+          {(!linksKomen.prev) ? <span></span>: <div onClick={this.prevPage} ><span className="lnr lnr-chevron-left"></span></div>} 
+              Komentar ({metaKomen.total})
+          {(!linksKomen.next) ? <span></span>: <div onClick={this.nextPage}><span className="lnr lnr-chevron-right"></span></div>} 
+        </h4>
         <hr />
         {dataKomen.map((komentar, i) => {
         return (
@@ -61,7 +80,7 @@ export default class CommentList extends Component {
               </div>
             </div>)	
         })}
-        {/* <CommentForm idBerita={idBerita} />	                                             				 */}
+        <CommentForm idBerita={this.props.idBerita} />
       </div>
     )
   }

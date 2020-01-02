@@ -22,13 +22,20 @@ export default class Galery extends Component {
 						</div>
 					</div>	
                     
-					<ul className="filter-wrap filters col-lg-12 no-padding">
+					<ul className="filter-wrap filters col-lg-12">
+							<li className="active" data-filter="*">Semua</li>
+							<li data-filter=".Ketersediaan">Kegiatan</li>
+							<li data-filter=".Kerawanan">Workshop</li>	
+							<li data-filter=".Konsumsi">Document</li>
+          </ul>
+
+					{/* <ul className="filter-wrap filters col-lg-12 no-padding">
 							<li className="active" data-filter="*">Semua Bidang</li>
 							<li data-filter=".Ketersediaan">Ketersediaan & Produksi Pangan</li>
 							<li data-filter=".Kerawanan">Kerawanan Distribusi & Cadangan Pangan</li>	
 							<li data-filter=".Konsumsi">Konsumsi & Penganekaragaman Pangan</li>
 							<li data-filter=".Keamanan">Keamanan Pangan</li>
-          </ul>
+          </ul> */}
      
 					<div className="filters-content">
 							<div className="row grid">

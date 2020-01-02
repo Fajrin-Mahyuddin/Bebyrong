@@ -72,7 +72,6 @@ class Post extends Component {
 		
     return (
       <section className="post-content-area">
-			
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-8 posts-list">
@@ -83,15 +82,15 @@ class Post extends Component {
 													<div className="user-details row">
 														<p className="user-name col-lg-12 col-md-12 col-6"><a href="#">Admin</a> <span className="lnr lnr-user"></span></p>
 														<p className="date col-lg-12 col-md-12 col-6"><a href="#">{data.waktu}</a> <span className="lnr lnr-calendar-full"></span></p>
-														<p className="view col-lg-12 col-md-12 col-6"><a href="#">10 Dilihat</a> <span className="lnr lnr-eye"></span></p>
-														<p className="comments col-lg-12 col-md-12 col-6"><a href="#">05 Komentar</a> <span className="lnr lnr-bubble"></span></p>						
+														{/* <p className="view col-lg-12 col-md-12 col-6"><a href="#">10 Dilihat</a> <span className="lnr lnr-eye"></span></p> */}
+														<p className="comments col-lg-12 col-md-12 col-6"><a href="#">{data.jumlahKomentar} Komentar</a> <span className="lnr lnr-bubble"></span></p>						
 													</div>
 												</div>
 												<div className="col-lg-9 col-md-9 ">
 													<div className="feature-img">
 														<img className="img-fluid" src={data.gambar} alt={data.judul} />
 													</div>
-													<a className="posts-title" href={`/berita/${kategori}/detail/${data.id}`}><h3>{data.judul}</h3></a>
+													<a className="posts-title" href={`/berita/${kategori}/detail/${data.slug}`}><h3>{data.judul}</h3></a>
 													<p className="excert">
 													</p>
 													<a href={`/berita/${kategori}/detail/${data.slug}`} className="primary-btn">Lihat lebih banyak</a>

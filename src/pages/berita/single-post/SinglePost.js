@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import NavLink from './NavLink'
 import CommentList from './CommentList'
-import SideProfil from './SideProfil'
+import SideProfil from '../card/SideProfil'
 import moment from 'moment';
 import Axios from 'axios';
 
@@ -26,9 +25,22 @@ export default class SinglePost extends Component {
     }).catch(err => alert(err))
   }
   
-  render() {
-    const {id = null, gambar, judul, waktu, jmlShare} = this.state.data
+  facebookShare = id => {
+    console.log('ini facebook share', id)
     
+    Axios.get(`/api/share/berita`, {
+      headers: {
+        Accept: 'application/json',
+        id,
+      }
+    }).then(res => {
+      console.log(res.data)
+    }).catch(err => alert(err))
+  }
+  
+  render() {
+    const {id = null, gambar, judul, updated_at, jmlShare} = this.state.data
+    console.log(this.state.data)
     return (
         <section className="post-content-area single-post-area">
           <div className="container">
@@ -43,11 +55,11 @@ export default class SinglePost extends Component {
                   <div className="col-lg-12  col-md-12 wrapper-contex">
                       <div className="user-details">
                         <p className="user-name col-lg-12 col-md-12 col-6"><a href="#">Admin</a> <span className="lnr lnr-user"></span></p>
-                        <p className="user-name col-lg-12 col-md-12 col-6"><a href="#">{moment(waktu).format('dddd, DD/mm/YYYY')}</a> <span className="lnr lnr-calendar-full"></span></p>
+                        <p className="user-name col-lg-12 col-md-12 col-6"><a href="#">{moment(updated_at).format('dddd, DD/MM/YYYY')}</a> <span className="lnr lnr-calendar-full"></span></p>
                         <p className="view col-lg-12 col-md-12 col-6"><a href="#">{jmlShare} Shared</a> <span className="lnr lnr-eye"></span></p>
                         <p className="comments col-lg-12 col-md-12 col-6"><a href="#">{this.state.totalKoment} Komentar</a> <span className="lnr lnr-bubble"></span></p>
                         <ul className="social-links col-lg-12 col-md-12 col-12">
-                          <li><a href="#"><i className="fa fa-facebook"></i></a></li>
+                          <li><a onClick={() => this.facebookShare(id)} ><i className="fa fa-facebook"></i></a></li>
                           <li><a href="#"><i className="fa fa-twitter"></i></a></li>
                         </ul>																				
                       </div>
@@ -58,8 +70,8 @@ export default class SinglePost extends Component {
                     </div>
                   </div>
                 </div>
-                {/* <NavLink /> */}
-                {(id) ? <CommentList getData={(e) => this.setState({totalKoment: e })} idBerita={id} />: "Loading Data.."}
+                {/* <NavLink /> */ }
+                {id ? <CommentList getData={(e) => this.setState({totalKoment: e })} idBerita={id} />: "Loading Data.."}
               </div>
               <SideProfil />
             </div>

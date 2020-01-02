@@ -7,6 +7,7 @@ import Content from '../pages/berita/single-post/Content'
 import TentangApp from '../pages/tentangApp/Index'
 import Kontak from '../pages/kontak/Index'
 import ProfilPage from '../pages/profil/Index'
+import SearchPage from '../pages/berita/search/Index'
 
 export default class Navigate extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class Navigate extends Component {
           <Route path="/profil/:param" component={ProfilPage} />
           {/* <Route path="/profil/:param" component={Profil} /> */}
           <Route exact path="/berita/:id" component={Berita} />
+          <Route path="/berita/search/:params" component={SearchPage} />
           <Route path="/berita/:id/detail/:slug"  component={Content} />
           <Route path="/tentang-aplikasi" component={TentangApp} />
           <Route path="/kontak"  component={Kontak} />

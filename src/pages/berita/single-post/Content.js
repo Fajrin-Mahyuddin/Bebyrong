@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Banner from '../../Banner'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import SinglePost from './SinglePost'
 import Header from '../../../includes/Header'
 import Footer from '../../../includes/Footer'
-import Axios from 'axios'
 import {Helmet} from 'react-helmet'
+import SeacrhPage from '../search/Index'
 
 export default class Content extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ export default class Content extends Component {
  
   getDataChild = judul => {
       this.setState({
-        judul: judul
+        judul: judul || 'Hasil Pencarian'
       })
   }
 
@@ -29,7 +30,10 @@ export default class Content extends Component {
       </Helmet>
       <Header />
       <Banner judul={this.state.judul} />
-      <SinglePost getData={this.getDataChild} slug={this.props.match.params.slug} />
+      <Switch>
+         <Route path="/berita/seacrh" render={() => <SeacrhPage /> } /> 
+         <Route path="/berita/:id/detail/:slug" render={() => <SinglePost getData={this.getDataChild} slug={this.props.match.params.slug} /> } /> 
+      </Switch>
       <Footer />
       </div>
     )

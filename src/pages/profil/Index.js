@@ -11,10 +11,11 @@ import VisiMisi from './visi-cards/VisiMisi'
 export default class Index extends Component {
   render() {
     
+    let judul = this.props.match.params.param.replace("-", ' ')
     return (
       <div>
         <Header />
-        <Banner judul={this.props.match.params.param} />
+        <Banner judul={judul} />
         <Switch>
           <Route path="/profil/profil-organisasi" component={Profil} />
           <Route path="/profil/tugas-pokok" component={Tugas} />

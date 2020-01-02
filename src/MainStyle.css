@@ -58,16 +58,34 @@ p.date {
   /* text-align: justify; */
 }
 
-.comments-area .comment-navigate a {
+.comments-area .comment-navigate div {
   /* background: khaki; */
   border: 2px solid #c1c1c1;
   width: 30px;
   height: 30px;
   line-height: 30px;
+  cursor: pointer;
 }
 
 .thumb img {
   width: 50px;
+}
+
+.text-left p {
+  text-align: justify;
+}
+
+.listOnProfil li {
+  list-style: decimal;
+  padding-left: 10px;
+  margin-left: 10px;
+  text-align: justify;
+  margin-bottom: 3px;
+}
+
+.gallery-area .filters li {
+  padding: 10px 40px;
+  font-size: 18px;
 }
 
 @media only screen and (max-width: 600px) {
