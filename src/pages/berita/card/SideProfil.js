@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Route, Switch, Redirect} from 'react-router-dom'
 import Axios from 'axios';
 import moment from 'moment';
 

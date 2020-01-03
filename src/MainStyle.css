@@ -88,6 +88,11 @@ p.date {
   font-size: 18px;
 }
 
+.single-post-area .social-links li {
+  margin-left: 5px !important;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) {
   /* For mobile phones: */
   

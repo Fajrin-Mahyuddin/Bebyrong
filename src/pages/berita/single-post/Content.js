@@ -31,7 +31,7 @@ export default class Content extends Component {
       <Header />
       <Banner judul={this.state.judul} />
       <Switch>
-         <Route path="/berita/seacrh" render={() => <SeacrhPage /> } /> 
+         <Route path="/berita/seacrh/:params" render={() => <SeacrhPage /> } /> 
          <Route path="/berita/:id/detail/:slug" render={() => <SinglePost getData={this.getDataChild} slug={this.props.match.params.slug} /> } /> 
       </Switch>
       <Footer />

@@ -8,7 +8,7 @@ export default class VisiMisi extends Component {
 					<div className="row d-flex justify-content-left">
 						<div className="menu-content pb-10 col-lg-8">
 							<div className="title text-left">
-								<h2 className="mb-10"><span className="lnr lnr-chevron-right-circle"></span> Visi, Misi & Nilai Organisasi</h2>
+								<h2 className="mb-10"><span className="lnr lnr-bookmark"></span> Visi, Misi & Nilai Organisasi</h2>
 								<br />
 								<h3>Visi Dinas Ketahanan Pangan Kota Makassar</h3>
 								<p></p>

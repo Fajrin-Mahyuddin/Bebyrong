@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CommentList from './CommentList'
 import SideProfil from '../card/SideProfil'
+import {FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon} from 'react-share'
 import moment from 'moment';
 import Axios from 'axios';
 
@@ -40,7 +41,7 @@ export default class SinglePost extends Component {
   
   render() {
     const {id = null, gambar, judul, updated_at, jmlShare} = this.state.data
-    console.log(this.state.data)
+    const linkShare = window.location.href;
     return (
         <section className="post-content-area single-post-area">
           <div className="container">
@@ -59,8 +60,17 @@ export default class SinglePost extends Component {
                         <p className="view col-lg-12 col-md-12 col-6"><a href="#">{jmlShare} Shared</a> <span className="lnr lnr-eye"></span></p>
                         <p className="comments col-lg-12 col-md-12 col-6"><a href="#">{this.state.totalKoment} Komentar</a> <span className="lnr lnr-bubble"></span></p>
                         <ul className="social-links col-lg-12 col-md-12 col-12">
-                          <li><a onClick={() => this.facebookShare(id)} ><i className="fa fa-facebook"></i></a></li>
-                          <li><a href="#"><i className="fa fa-twitter"></i></a></li>
+                          <li>
+                            <FacebookShareButton url={linkShare}>
+                              <FacebookIcon size={25} round={true} />
+                            </FacebookShareButton>
+                          </li>
+                          <li>
+                            <TwitterShareButton url={linkShare}>
+                              <TwitterIcon size={25} round={true} />
+                            </TwitterShareButton>
+                          </li>
+                          
                         </ul>																				
                       </div>
                   
